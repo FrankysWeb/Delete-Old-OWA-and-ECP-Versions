@@ -71,10 +71,10 @@ try {
 #Search for old versions
 write-host "Old OWA / ECP folders:"
 write-host ""
-[int]$ExchangeBuild = $ExchangeServerVersion.Replace(".","")
+$ExchangeBuild = [System.Version]::Parse($exchangeserverversion)
 $OldVersions = @()
 foreach ($Version in $AllVersions)  {
-    [int]$Folderversion = $Version.Name.Replace(".","")
+    $Folderversion = [System.Version]::Parse($Version.Name)
     if ( $Folderversion -lt $ExchangeBuild ) {
         write-host $Version.Fullname
         $OldVersions += $Version.Fullname
